@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        // Seed default Settings (QRIS String & Merchant Name)
+        \App\Models\Setting::set('qris_string', '00020101021126570011ID.DANA.WWW011893600915375303080802097530308080303UMI51440014ID.CO.QRIS.WWW0215ID10243459986770303UMI5204481453033605802ID5914LALCLOUD STORE6014Kab. Mojokerto610561363630439DA');
+        \App\Models\Setting::set('qris_merchant_name', 'LALCLOUD STORE');
+
         // Create sample customers
         $customers = [];
         $customerData = [

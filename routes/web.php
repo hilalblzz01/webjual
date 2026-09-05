@@ -95,4 +95,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
     Route::put('users/{user}', [Admin\UserController::class, 'update'])->name('users.update');
     Route::post('users/{user}/toggle', [Admin\UserController::class, 'toggleStatus'])->name('users.toggle');
+
+    // Settings (QRIS & Store Config)
+    Route::get('settings', [Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::put('settings', [Admin\SettingController::class, 'update'])->name('settings.update');
 });

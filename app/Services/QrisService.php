@@ -2,19 +2,37 @@
 
 namespace App\Services;
 
+use App\Models\Setting;
+
 class QrisService
 {
     /**
-     * User's Static QRIS String (DANA Bisnis: LALCLOUD STORE, Kab. Mojokerto)
+     * Fallback Static QRIS String
      */
-    public static string $staticQris = '00020101021126570011ID.DANA.WWW011893600915375303080802097530308080303UMI51440014ID.CO.QRIS.WWW0215ID10243459986770303UMI5204481453033605802ID5914LALCLOUD STORE6014Kab. Mojokerto610561363630439DA';
+    public static string $defaultQris = '00020101021126570011ID.DANA.WWW011893600915375303080802097530308080303UMI51440014ID.CO.QRIS.WWW0215ID10243459986770303UMI5204481453033605802ID5914LALCLOUD STORE6014Kab. Mojokerto610561363630439DA';
+
+    /**
+     * Get active QRIS string (from Database setting or fallback)
+     */
+    public static function getQrisString(): string
+    {
+        return Setting::get('qris_string') ?: self::$defaultQris;
+    }
+
+    /**
+     * Get QRIS Merchant Name (from Database setting or fallback)
+     */
+    public static function getMerchantName(): string
+    {
+        return Setting::get('qris_merchant_name') ?: 'LALCLOUD STORE';
+    }
 
     /**
      * Convert static QRIS string to Dynamic QRIS string with specific amount
      */
     public static function generateDynamic(int $amount, ?string $qrisString = null): string
     {
-        $baseQris = $qrisString ?? self::$staticQris;
+        $baseQris = $qrisString ?? self::getQrisString();
 
         // Strip CRC16 (6304XXXX) if present at end
         $base = preg_replace('/6304[A-Fa-f0-9]{4}$/', '', $baseQris);

@@ -40,7 +40,7 @@
         <!-- QR Code Container -->
         <div class="flex flex-col items-center justify-center mb-6">
             <div class="bg-white p-4 rounded-2xl border-2 border-primary-500 shadow-lg inline-block">
-                <p class="text-xs font-bold text-gray-700 mb-2">🏪 LALCLOUD STORE</p>
+                <p class="text-xs font-bold text-gray-700 mb-2">🏪 {{ \App\Services\QrisService::getMerchantName() }}</p>
                 <div class="w-64 h-64 mx-auto">
                     <img src="{{ $qrImageUrl }}" alt="QRIS DANA {{ $order->invoice_number }}" class="w-full h-full object-contain">
                 </div>

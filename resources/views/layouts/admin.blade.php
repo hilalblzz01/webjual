@@ -92,11 +92,15 @@
                 @endif
             </a>
 
-            <p class="text-xs uppercase text-gray-500 font-semibold px-3 pt-4 pb-1">Pengguna</p>
+            <p class="text-xs uppercase text-gray-500 font-semibold px-3 pt-4 pb-1">Pengguna & Pengaturan</p>
 
             <a href="{{ route('admin.users.index') }}"
                class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.users*') ? 'active text-primary-500 bg-primary-50' : '' }}">
                 <i class="fas fa-users w-5 text-center"></i> Pengguna
+            </a>
+            <a href="{{ route('admin.settings.index') }}"
+               class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('admin.settings*') ? 'active text-primary-500 bg-primary-50' : '' }}">
+                <i class="fas fa-qrcode w-5 text-center text-amber-400"></i> Pengaturan QRIS
             </a>
         </nav>
 

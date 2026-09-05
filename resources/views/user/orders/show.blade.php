@@ -50,7 +50,7 @@
                 <!-- QR Code Display -->
                 <div class="flex flex-col items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                     <p class="text-xs font-semibold text-gray-500 mb-1">Scan QRIS DANA Bisnis (Auto Nominal):</p>
-                    <p class="text-xs font-bold text-gray-800 mb-2">🏪 LALCLOUD STORE</p>
+                    <p class="text-xs font-bold text-gray-800 mb-2">🏪 {{ \App\Services\QrisService::getMerchantName() }}</p>
                     
                     <div class="w-52 h-52 bg-white rounded-xl flex items-center justify-center p-2 border-2 border-primary-500 shadow-md">
                         <img src="{{ $qrImageUrl }}" alt="QRIS {{ $order->invoice_number }}" class="w-full h-full object-contain">
