@@ -12,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Bind public path to base_path if extracted directly in public_html without public folder
+        if (file_exists(base_path('index.php')) && !file_exists(base_path('../public_html'))) {
+            $this->app->usePublicPath(base_path());
+        }
     }
 
     /**
