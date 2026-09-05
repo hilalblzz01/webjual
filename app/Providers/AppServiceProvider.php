@@ -12,8 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Bind public path to base_path if extracted directly in public_html without public folder
-        if (file_exists(base_path('index.php')) && !file_exists(base_path('../public_html'))) {
+        // Support public_html folder on both localhost and cPanel seamlessly
+        if (file_exists(base_path('public_html'))) {
+            $this->app->usePublicPath(base_path('public_html'));
+        } elseif (file_exists(base_path('index.php')) && !file_exists(base_path('public'))) {
             $this->app->usePublicPath(base_path());
         }
     }
